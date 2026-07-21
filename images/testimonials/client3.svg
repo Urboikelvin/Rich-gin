@@ -1,0 +1,46 @@
+<svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg3" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#00c2e0"/>
+      <stop offset="100%" stop-color="#03214a"/>
+    </linearGradient>
+    <clipPath id="circ3"><circle cx="100" cy="100" r="100"/></clipPath>
+  </defs>
+  <g clip-path="url(#circ3)">
+    <rect width="200" height="200" fill="url(#bg3)"/>
+    <!-- shoulders / lab coat -->
+    <path d="M26 200 C26 148 60 128 100 128 C140 128 174 148 174 200 Z" fill="#ffffff"/>
+    <!-- inner collar -->
+    <path d="M84 130 L100 152 L116 130 L106 128 L100 140 L94 128 Z" fill="#0a3872"/>
+    <!-- lapel lines -->
+    <path d="M84 130 L74 168" stroke="#dce6f0" stroke-width="2" fill="none"/>
+    <path d="M116 130 L126 168" stroke="#dce6f0" stroke-width="2" fill="none"/>
+    <!-- neck -->
+    <rect x="86" y="110" width="28" height="32" rx="10" fill="#5a3620"/>
+    <!-- head -->
+    <ellipse cx="100" cy="88" rx="38" ry="42" fill="#5a3620"/>
+    <!-- hair updo/bun -->
+    <path d="M60 84 C56 52 76 30 100 30 C124 30 144 52 140 84 C138 62 122 46 100 46 C78 46 62 62 60 84 Z" fill="#141414"/>
+    <circle cx="100" cy="30" r="16" fill="#141414"/>
+    <path d="M62 80 q-8 4 -6 14 q6 2 8 -4 Z" fill="#141414"/>
+    <path d="M138 80 q8 4 6 14 q-6 2 -8 -4 Z" fill="#141414"/>
+    <!-- ears -->
+    <ellipse cx="63" cy="92" rx="5" ry="8" fill="#5a3620"/>
+    <ellipse cx="137" cy="92" rx="5" ry="8" fill="#5a3620"/>
+    <!-- face -->
+    <ellipse cx="100" cy="92" rx="30" ry="34" fill="#5a3620"/>
+    <!-- eyes -->
+    <ellipse cx="87" cy="90" rx="3.8" ry="4.6" fill="#1a1a1a"/>
+    <ellipse cx="113" cy="90" rx="3.8" ry="4.6" fill="#1a1a1a"/>
+    <!-- eyebrows -->
+    <path d="M80 80 q7 -3 13 0" stroke="#1a1a1a" stroke-width="2.2" fill="none" stroke-linecap="round"/>
+    <path d="M107 80 q7 -3 13 0" stroke="#1a1a1a" stroke-width="2.2" fill="none" stroke-linecap="round"/>
+    <!-- nose -->
+    <path d="M99 94 q-3 7 0 10 q4 3 8 0" stroke="#3a2412" stroke-width="1.6" fill="none" stroke-linecap="round"/>
+    <!-- smile -->
+    <path d="M85 113 q15 11 30 0" stroke="#241a10" stroke-width="2.4" fill="none" stroke-linecap="round"/>
+    <!-- earrings -->
+    <circle cx="63" cy="103" r="3" fill="#c8a84b"/>
+    <circle cx="137" cy="103" r="3" fill="#c8a84b"/>
+  </g>
+</svg>
