@@ -11,8 +11,6 @@
 <meta property="og:image" content="logo.png"/>
 <link rel="icon" type="image/png" href="logo.png"/>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
-<!-- SMTP.js for Brevo -->
-<script src="https://smtpjs.com/v3/smtp.js"></script>
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 :root{
@@ -214,21 +212,33 @@ nav.scrolled .nlogo-img{height:40px}
 /* ══ PRODUCTS ══ */
 #products{background:var(--offwhite)}
 .pgrid{display:grid;grid-template-columns:repeat(4,1fr);gap:1.2rem;margin-top:3rem}
-.pchip{background:var(--white);border:1px solid var(--graylt);border-radius:14px;overflow:hidden;transition:all .3s var(--ease);cursor:default}
-.pchip:hover{border-color:var(--blue3);transform:translateY(-4px);box-shadow:0 12px 30px rgba(21,96,189,.12)}
+.pchip{background:var(--white);border:1px solid var(--graylt);border-radius:14px;overflow:hidden;transition:all .35s var(--ease);cursor:default}
+.pchip:hover{border-color:var(--blue3);transform:translateY(-6px);box-shadow:0 16px 36px rgba(21,96,189,.14)}
 .pchip-body{padding:.95rem 1.1rem;display:flex;align-items:center;gap:.75rem}
 .pdot{width:34px;height:34px;background:var(--blue);border-radius:8px;flex-shrink:0;display:flex;align-items:center;justify-content:center;transition:transform .3s}
 .pchip:hover .pdot{transform:scale(1.1) rotate(-5deg)}
 .pdot svg{width:16px;height:16px;stroke:white;fill:none;stroke-width:2}
 .pchip span{font-size:.82rem;font-weight:600;color:var(--navy);line-height:1.3}
 
-/* Product photo placeholder — replace the <img src="..."> below with a real
-   photo and this placeholder graphic will automatically disappear. */
-.pphoto{position:relative;width:100%;height:150px;background:var(--pale)}
-.pphoto img{width:100%;height:100%;object-fit:cover;display:block}
+/* Product photo — real photo composited onto a clean card, or a graceful
+   dashed placeholder if the image file is missing. */
+.pphoto{position:relative;width:100%;aspect-ratio:900/620;background:var(--pale);overflow:hidden}
+.pphoto img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .5s var(--ease)}
+.pchip:hover .pphoto img{transform:scale(1.06)}
 .pphoto-ph{position:absolute;inset:0;display:none;flex-direction:column;align-items:center;justify-content:center;gap:.4rem;background:repeating-linear-gradient(135deg,var(--pale),var(--pale) 10px,#e2eefb 10px,#e2eefb 20px)}
 .pphoto-ph svg{width:26px;height:26px;stroke:var(--blue3);fill:none;stroke-width:1.6;opacity:.7}
 .pphoto-ph span{font-size:.62rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--blue);opacity:.7}
+
+/* "more products" CTA banner */
+.pmore{margin-top:2.2rem;display:flex;align-items:center;gap:1.6rem;background:linear-gradient(120deg,var(--navy) 0%,var(--blue) 100%);border-radius:18px;padding:1.9rem 2.2rem;box-shadow:0 20px 50px rgba(21,96,189,.22)}
+.pmore-ico{width:52px;height:52px;border-radius:50%;background:rgba(255,255,255,.14);display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.pmore-ico svg{width:26px;height:26px;stroke:var(--cyan);fill:none;stroke-width:1.8}
+.pmore-txt{flex:1;min-width:0}
+.pmore-txt h4{font-family:'Cormorant Garamond',serif;font-size:1.3rem;font-weight:700;color:var(--white);margin-bottom:.3rem}
+.pmore-txt p{font-size:.86rem;font-weight:300;color:rgba(255,255,255,.72);line-height:1.6;max-width:640px}
+.pmore-btn{flex-shrink:0;display:inline-flex;align-items:center;gap:8px;background:var(--white);color:var(--navy);font-weight:700;font-size:.85rem;padding:.85rem 1.7rem;border-radius:50px;text-decoration:none;transition:all .3s var(--ease);white-space:nowrap}
+.pmore-btn:hover{transform:translateY(-2px);box-shadow:0 10px 26px rgba(0,0,0,.2);background:var(--cyan);color:var(--ink)}
+@media(max-width:760px){.pmore{flex-direction:column;text-align:center;gap:1rem}.pmore-txt p{max-width:none}}
 
 /* ══ SERVICES ══ */
 #services{background:var(--ink);position:relative;overflow:hidden}
@@ -530,13 +540,14 @@ footer{background:var(--ink);padding:3.5rem 5% 2rem}
   <div class="sec-in">
     <div class="rev"><span class="stag">Our Products</span><h2 class="sh2">Comprehensive <em>Medical</em> Consumables</h2><p class="sp">From surgical essentials to diagnostic supplies, we stock a broad range of certified medical consumables for hospitals, clinics, labs, and healthcare organisations.</p></div>
     <!--
-      HOW TO ADD YOUR OWN PRODUCT PHOTOS:
+      HOW TO ADD OR SWAP PRODUCT PHOTOS:
       Each card below has an <img src="images/products/....jpg"> tag.
-      1. Create a folder named "images/products" next to this index.html file.
-      2. Save your product photo using the exact file name shown in that card's src (e.g. gloves.jpg).
-      3. Refresh the page — the photo will appear automatically and the dashed
-         placeholder + camera icon will disappear on its own. No code needs to change.
-      Recommended photo size: roughly 500x400px (landscape), JPG or PNG.
+      To replace a photo, save your image over the existing file with the
+      SAME name (e.g. gloves.jpg) inside the "images/products" folder, or
+      point the src at a new file name. Recommended: roughly 900x620px,
+      product centered, JPG or PNG.
+      To add a brand-new product card, copy one whole ".pchip" block and
+      give it a new image + label.
     -->
     <div class="pgrid">
       <div class="pchip rev d1">
@@ -560,33 +571,27 @@ footer{background:var(--ink);padding:3.5rem 5% 2rem}
         <div class="pchip-body"><div class="pdot"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg></div><span>Surgical Masks & PPE</span></div>
       </div>
       <div class="pchip rev d2">
-        <div class="pphoto"><img src="images/products/diagnostic-kits.jpg" alt="Diagnostic Test Kits" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"/><div class="pphoto-ph"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><circle cx="12" cy="12" r="3.5"/><path d="M8 5l1.5-2h5L16 5"/></svg><span>Add Photo</span></div></div>
-        <div class="pchip-body"><div class="pdot"><svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 1 0 10 10H12z"/></svg></div><span>Diagnostic Test Kits</span></div>
+        <div class="pphoto"><img src="images/products/wound-dressings.jpg" alt="Adhesive Plaster & Dressings" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"/><div class="pphoto-ph"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><circle cx="12" cy="12" r="3.5"/><path d="M8 5l1.5-2h5L16 5"/></svg><span>Add Photo</span></div></div>
+        <div class="pchip-body"><div class="pdot"><svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></div><span>Adhesive Plaster & Dressings</span></div>
       </div>
       <div class="pchip rev d3">
-        <div class="pphoto"><img src="images/products/blood-tubes.jpg" alt="Blood Collection Tubes" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"/><div class="pphoto-ph"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><circle cx="12" cy="12" r="3.5"/><path d="M8 5l1.5-2h5L16 5"/></svg><span>Add Photo</span></div></div>
-        <div class="pchip-body"><div class="pdot"><svg viewBox="0 0 24 24"><path d="M19 9V6a2 2 0 0 0-2-2H7a2 2 0 0 0-2 2v3M5 9h14l1 12H4L5 9z"/></svg></div><span>Blood Collection Tubes</span></div>
+        <div class="pphoto"><img src="images/products/couch-rolls.jpg" alt="Examination Couch Rolls" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"/><div class="pphoto-ph"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><circle cx="12" cy="12" r="3.5"/><path d="M8 5l1.5-2h5L16 5"/></svg><span>Add Photo</span></div></div>
+        <div class="pchip-body"><div class="pdot"><svg viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="16" rx="8"/><path d="M4 12h16"/></svg></div><span>Examination Couch Rolls</span></div>
       </div>
       <div class="pchip rev d4">
-        <div class="pphoto"><img src="images/products/lab-consumables.jpg" alt="Laboratory Consumables" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"/><div class="pphoto-ph"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><circle cx="12" cy="12" r="3.5"/><path d="M8 5l1.5-2h5L16 5"/></svg><span>Add Photo</span></div></div>
-        <div class="pchip-body"><div class="pdot"><svg viewBox="0 0 24 24"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg></div><span>Laboratory Consumables</span></div>
+        <div class="pphoto"><img src="images/products/exam-gel.jpg" alt="Ultrasound & Examination Gel" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"/><div class="pphoto-ph"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><circle cx="12" cy="12" r="3.5"/><path d="M8 5l1.5-2h5L16 5"/></svg><span>Add Photo</span></div></div>
+        <div class="pchip-body"><div class="pdot"><svg viewBox="0 0 24 24"><path d="M19 9V6a2 2 0 0 0-2-2H7a2 2 0 0 0-2 2v3M5 9h14l1 12H4L5 9z"/></svg></div><span>Ultrasound & Examination Gel</span></div>
       </div>
-      <div class="pchip rev d1">
-        <div class="pphoto"><img src="images/products/infusion-sets.jpg" alt="Infusion Sets" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"/><div class="pphoto-ph"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><circle cx="12" cy="12" r="3.5"/><path d="M8 5l1.5-2h5L16 5"/></svg><span>Add Photo</span></div></div>
-        <div class="pchip-body"><div class="pdot"><svg viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg></div><span>Infusion Sets</span></div>
+    </div>
+
+    <!-- "not all products shown" CTA -->
+    <div class="pmore rev">
+      <div class="pmore-ico"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 2-3 4"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg></div>
+      <div class="pmore-txt">
+        <h4>Don't see what you're looking for?</h4>
+        <p>This is only a small sample of what we stock. We supply hundreds of medical, surgical, diagnostic and laboratory consumables — if you need something specific, get in touch and we'll source it for you.</p>
       </div>
-      <div class="pchip rev d2">
-        <div class="pphoto"><img src="images/products/catheters.jpg" alt="Catheters & Drainage" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"/><div class="pphoto-ph"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><circle cx="12" cy="12" r="3.5"/><path d="M8 5l1.5-2h5L16 5"/></svg><span>Add Photo</span></div></div>
-        <div class="pchip-body"><div class="pdot"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M12 2v4M12 18v4"/></svg></div><span>Catheters & Drainage</span></div>
-      </div>
-      <div class="pchip rev d3">
-        <div class="pphoto"><img src="images/products/wound-dressings.jpg" alt="Wound Dressings" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"/><div class="pphoto-ph"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><circle cx="12" cy="12" r="3.5"/><path d="M8 5l1.5-2h5L16 5"/></svg><span>Add Photo</span></div></div>
-        <div class="pchip-body"><div class="pdot"><svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></div><span>Wound Dressings</span></div>
-      </div>
-      <div class="pchip rev d4">
-        <div class="pphoto"><img src="images/products/sterilization.jpg" alt="Sterilization Supplies" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"/><div class="pphoto-ph"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><circle cx="12" cy="12" r="3.5"/><path d="M8 5l1.5-2h5L16 5"/></svg><span>Add Photo</span></div></div>
-        <div class="pchip-body"><div class="pdot"><svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div><span>Sterilization Supplies</span></div>
-      </div>
+      <a href="#contact" class="pmore-btn">Contact Us →</a>
     </div>
   </div>
 </section>
@@ -874,23 +879,44 @@ document.querySelectorAll('.mvv-tab').forEach(btn=>btn.addEventListener('click',
 })();
 
 /* ══════════════════════════════════════
-   CONTACT FORM — sends via Brevo + SMTP.js
+   CONTACT FORM — sends via Web3Forms (free, no backend needed)
 
-   SETUP STEPS (one-time, ~5 minutes):
-   1. Sign up free at https://www.brevo.com
-      (Free plan = 300 emails/day — plenty for a contact form)
-   2. In Brevo: Settings → SMTP & API → SMTP tab
-      Note your Login email and click "Generate a new SMTP password"
-   3. Go to https://smtpjs.com and click "Encrypt your SMTP credentials"
-      Fill in:
-        Server:   smtp-relay.brevo.com
-        Port:     587
-        Username: (your Brevo login email)
-        Password: (your Brevo SMTP password)
-   4. Copy the SecureToken it gives you
-   5. Replace 'YOUR_SMTPJS_SECURE_TOKEN' below with that token
+   RIGHT NOW: the form works out of the box using a safe fallback — if no
+   access key is configured yet, clicking "Send Message" opens the visitor's
+   email app with everything pre-filled, addressed to your Gmail. Nothing
+   is lost, but it does require them to hit send in their own email app.
+
+   TO MAKE IT SEND INSTANTLY FROM THE SITE (no email app required, ~2 minutes):
+   1. Go to https://web3forms.com
+   2. Enter richgintimelessoptionsltd@gmail.com and click "Create Access Key"
+   3. Check that inbox for an email from Web3Forms with your key
+   4. Copy the key and paste it below, replacing 'YOUR_WEB3FORMS_ACCESS_KEY'
+   5. Save the file — messages will now send straight from the website,
+      and you'll get them by email instantly. Nothing else needs to change.
    ══════════════════════════════════════ */
-const BREVO_TOKEN = 'YOUR_SMTPJS_SECURE_TOKEN';
+const WEB3FORMS_KEY = 'YOUR_WEB3FORMS_ACCESS_KEY';
+const CONTACT_EMAIL = 'richgintimelessoptionsltd@gmail.com';
+
+function openMailFallback(fn, ln, em, org, svc, msg){
+  const fullName = fn + (ln ? ' ' + ln : '');
+  const subject = 'Website Enquiry — ' + (svc || 'General') + ' from ' + fullName;
+  const body =
+    'Name: ' + fullName + '\n' +
+    'Email: ' + em + '\n' +
+    'Organization: ' + (org || 'Not provided') + '\n' +
+    'Enquiry type: ' + (svc || 'Not specified') + '\n\n' +
+    'Message:\n' + msg;
+
+  window.location.href = 'mailto:' + CONTACT_EMAIL +
+    '?subject=' + encodeURIComponent(subject) +
+    '&body=' + encodeURIComponent(body);
+
+  document.getElementById('fbody').style.display = 'none';
+  const fok = document.getElementById('fok');
+  fok.querySelector('h3').textContent = 'Opening Your Email App…';
+  fok.querySelector('p').textContent = 'We\'ve pre-filled a message to us in your email app — just hit send there to complete it.';
+  fok.style.display = 'block';
+}
 
 async function subF(){
   const fn    = document.getElementById('fn').value.trim();
@@ -909,50 +935,46 @@ async function subF(){
   }
   errEl.style.display = 'none';
 
-  // Dev mode — shows success screen before token is configured
-  if(BREVO_TOKEN === 'YOUR_SMTPJS_SECURE_TOKEN'){
-    document.getElementById('fbody').style.display = 'none';
-    document.getElementById('fok').style.display   = 'block';
+  // Not configured yet — fall back to opening the visitor's email app
+  if(WEB3FORMS_KEY === 'YOUR_WEB3FORMS_ACCESS_KEY'){
+    openMailFallback(fn, ln, em, org, svc, msg);
     return;
   }
 
   btn.disabled    = true;
   btn.textContent = 'Sending…';
 
-  const emailBody = [
-    'New website enquiry received:',
-    '',
-    'Name:         ' + fn + (ln ? ' ' + ln : ''),
-    'Email:        ' + em,
-    'Organization: ' + (org || 'Not provided'),
-    'Enquiry type: ' + (svc || 'Not specified'),
-    '',
-    'Message:',
-    msg
-  ].join('\n');
-
   try {
-    const result = await Email.send({
-      SecureToken : BREVO_TOKEN,
-      To          : 'richgintimelessoptionsltd@gmail.com',
-      From        : 'richgintimelessoptionsltd@gmail.com',
-      ReplyTo     : em,
-      Subject     : 'Website Enquiry — ' + (svc || 'General') + ' from ' + fn + (ln ? ' ' + ln : ''),
-      Body        : emailBody
+    const res = await fetch('https://api.web3forms.com/submit', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+      body: JSON.stringify({
+        access_key: WEB3FORMS_KEY,
+        subject: 'Website Enquiry — ' + (svc || 'General') + ' from ' + fn + (ln ? ' ' + ln : ''),
+        from_name: fn + (ln ? ' ' + ln : '') + ' — Rich-Gin Website',
+        email: em,
+        Organization: org || 'Not provided',
+        'Enquiry Type': svc || 'Not specified',
+        Message: msg
+      })
     });
+    const data = await res.json();
 
-    if(result === 'OK'){
+    if(data.success){
       document.getElementById('fbody').style.display = 'none';
-      document.getElementById('fok').style.display   = 'block';
+      const fok = document.getElementById('fok');
+      fok.querySelector('h3').textContent = 'Message Received!';
+      fok.querySelector('p').textContent = 'Thank you for reaching out. Our team will respond within 24 business hours.';
+      fok.style.display = 'block';
     } else {
-      throw new Error(result);
+      throw new Error(data.message || 'Unknown error');
     }
   } catch(err){
+    console.error('Web3Forms send error:', err);
     btn.disabled    = false;
     btn.textContent = 'Send Message →';
-    errEl.textContent = 'Message failed to send. Please email us directly at richgintimelessoptionsltd@gmail.com';
-    errEl.style.display = 'block';
-    console.error('Brevo send error:', err);
+    // Never lose the enquiry — fall back to the visitor's email app
+    openMailFallback(fn, ln, em, org, svc, msg);
   }
 }
 </script>
